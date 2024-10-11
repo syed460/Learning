@@ -132,3 +132,56 @@ Time Complexity:
 Number of function calls = N
 space per funciton = 1
 => N+1 => **O(N)**
+
+---
+
+## Assignement Problems
+
+### Problem 1: Sum of Digits
+
+Given int A, Find sum of all digits using recursion
+
+if A = 1024
+`idea`:\
+sumDigits(1024) = 4 + sumDigits(102)
+sumDigits(102) = 2 + sumDigits(10)
+..
+sumDigits(N) = (N%10) + sumDigits(N//10)
+
+```python
+def sumDigits(N):
+
+  if N ==0:
+    return 0
+
+  return ((N%10) + sumDigits(N//10))
+```
+TC: O(logN) because the number of digits in N decreces by one in each recursieve call.
+SC: O(logN)
+### Poblem 2: Decresing Increasing in one function
+
+Given int N, print the number in decresing order and then in increasing order.
+
+ex: N= 5
+ans = 5 4 3 2 1 1 2 3 4 5
+
+func(5) = print(5) func(4) print(5)
+func(4) = print(4) func(3) print(4)
+func(N) = print(N) func(N-1) print(N)
+
+```python
+def incDecNum(N):
+  if N == 0:
+    return
+  print(N)
+  incDecNum(N-1)  
+  print(N)  
+```
+1. BAse case takes constant time
+2. constatnt work per each funciton call
+3. the num of recursive call is equal to N
+TC: O(N)
+1. space per recursive call is constant
+2. the number of recursive calls is equal to N
+SC: O(N) because the recursive call crates a stack frame for each call
+
