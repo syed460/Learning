@@ -138,3 +138,74 @@ def checkPalin(A, s, e):
   return checkPalin(A, s+1, e-1)
 ```
 TC: O(N), SC: O(N)
+
+### Problem 5: Tower of Hanoi
+Given 3 towers from 1 to 3 (left to right). int A disks numbered from 1 to A. (top to bottom). 
+
+Return the 2D array of M*3, where M is minimum moves needed to solve the problem. Having each row [disk, from, to]
+
+![plot](./images/Tower_of_Hanoi_Setup.avif)
+
+`Idea`:
+1. move the N-1 disks to helper tower
+2. move the Nth disk to distination tower
+3. move the N-1 disks to the distination tower.
+
+```python
+def towerOfHanoi(A, source, helper, distination, ans):
+  
+  # move the N-1 disks to helper tower
+  towerOfHanoi(A-1, source, distination, helper, ans)
+  # handler moving Nth disk to distination tower
+  temp = []
+  temp.append(A)
+  temp.append(source)
+  temp.append(distination)
+  ans.append(temp)
+  # move N-1 disks to distnation tower
+  towerOfHanoi(A-1, helper, source, distination,ans)
+  return ans
+
+ans = []
+towerOfHanoi(A, 1,2,3, ans)
+```
+`Time Complexity:` O(2^N)
+Number of funciton calls = 2^N
+Time per funciton call = Constant
+`Space Complexity:` O(N)
+Depth of the function calls = N+1
+Space per function call = Constant
+
+### Problem 6: Is Magic Number
+Given int A, check if it is magic number or not. Magic Number defined by sum of all the digits of A and its sum, is equal to 1. It is magic number
+
+`idea`: func(123) = 123%10 + func(123/10)
+
+```python
+def isMagicNum(A):
+  if A == 0:
+    return 0
+  
+  sumOfDigits = A%10 + isMagicNum(A//10)
+  if sumOfDigits > 9:
+    sumOfDigits = sumOfDigits%10 + isMagicNum(sumOfDigits//10)
+  return sumOfDigits
+ans = isMagicNum(A)
+if ans == 1:
+  return True
+else:
+  return False
+```
+`Time Complexity: O(logN)`
+1. because we are dividing the N by 10 every time and reducing a digit from A
+2. Number of function calls is propotional to number of digits in A
+`Space Complexity: O(logN)`
+1. Depth of the function calls is number of digits in A
+
+### problem 7: max of an array using Recursion
+```python
+
+```
+### Problem 8: First Index using Recursion
+
+### Problem 9: Last index using Recursion
