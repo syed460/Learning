@@ -268,3 +268,83 @@ def subArrSumk(A):
       pfElement.add(prefixSum)
   return False
 ```
+
+## Problem 5: Count pair difference
+Given int[] A, int B. Find count of pairs (i,j) such that `A[i]-A[j] = B & i!=j`
+
+```
+a - b = k
+a - b + b = k + b # added b both sides
+a = k+b # after simplified
+
+A[i] = B + A[j] # to use to find the pair
+```
+
+```python
+def countPairDif(A, B):
+  hashMap = {}
+  for a in A:
+    hashMap[a] = hashMap.get(a, 0) +1
+  ans = 0 # the number of pairs count
+  for i in range(len(A)):
+    b = A[i] + B
+    if b in hashMap: # we have a pair that can be counted
+      ans += hashMap[b]
+    
+  return ans
+```
+
+## Problem 6: count pair sum
+given int[] A, int B. count the number of pair (i,j) such that `A[i]+ A[j] = B and i!=j`
+
+```
+a + b = k # we have k value and b
+a + b - b = k - b # subtracting b from both sides
+a = k - b
+
+A[i] = B - A[j] # to find the pair that can make value B
+```
+
+```python
+def countPairSumB(A, B):
+  hm = {}
+  ans = 0 # count of pairs
+  for i in range(len(A)):
+    b = B - A[i]
+    if b in hm:
+      ans += hm[b]
+    # adding current into hm
+    hm[A[i]] = hm.get(A[i], 0) +1
+  return ans
+
+```
+
+## Problem 7: Largest subarray with sum zero
+Given int [] A, and int B. Find the length of longest subarray length.
+
+```                 
+                    subarray with sum 0
+------------|(sum)|---------------------|
+----------------------------------------|(sum)
+```
+
+```python
+def largSubarrLen(A):
+  ans = 0 # length of maximum subarray
+  s, e = -1, -1 # initial start and end index
+  hm = {0: -1} # 0 to handle the case where subarray zero from the start
+  curr_sum = 0 # to maintain prefix sum values
+  for i in range(len(A)):
+    curr_sum += A[i]
+    if curr_sum in hm:
+      s = hm[curr_sum] +1 # next index of the value
+      e = i
+      length = e - s +1 # length of subarray
+      ans = max(ans, length)
+    else: # if curr_sum is not present previously
+      hm[curr_sum] = i
+  return ans
+```
+
+`TC`: O(N)
+`SC`: O(N)
