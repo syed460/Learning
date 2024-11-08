@@ -207,3 +207,135 @@ def largestNum(A):
 `time`: logn
 `space`: O(N) because we are using nums array to store integers in string format
 
+## Problems
+
+### sort the array
+given array A of 0s and 1s. Sort the array
+A = [0,1,1,0,1]
+
+> Approch 1 BF: (NlogN)
+using built in sorting method
+
+> count sort: `time: O(N)` `space: O(N)`
+1. creating freqArr of size 2 for 0 and 1 `sapce: O(2)`
+2. updating the frequency by iterating A `time: O(N)`
+3. iterating freqArr and updating original Array `time: 2 * N`
+
+> using two pointer: `time: O(N)` `space: constant`
+1. using the i and j. i from the 0th index and j from N-1 index.
+2. we increment i and decrement j based on condition.
+3. It taks Linear time complexity only.
+
+```python
+N = len(A)
+i, j = 0, N-1
+while(i<=j):
+  if A[i] == 0:
+    i+=1 # valid at A[i] is in correct place
+  elif A[j] == 1:
+    j-=1 # value at A[j] is in correct place
+  else:
+    # swapping i and j values
+    A[i], A[j] = A[j], A[i]
+return A
+```
+### Tens digit sorting
+Given int[] A, sort the array in increasing order based on the element tens value. if the elements tens value are same, arrange it in decresing order basis of element value.
+
+A = [15, 11, 7, 19]
+
+> BF: `space: O(1)` `time: O(nlogn)`
+1. Iterate throu the array to find the tens digit
+2. and sorting the array.
+
+```python
+def custom_sorting(x,y):
+  a = (x//10) % 10
+  b = (y//10) % 10
+  if a>b:
+    return 1
+  elif a<b:
+    return -1
+  else:
+    # handling if the tens digit is same
+    if x>y:
+      return -1
+    elif x<y:
+      return 1
+    else:
+      return -1
+
+from functools import cmp_to_key
+
+return sorted(A, key=cmp_to_key(custom_sorting))
+```
+
+### closet points to origin
+Given list of restorent locations in x and y coordinates, and int B represening the num of closet restarent user to see. The user current locaiton is assumed to (0,0). Find the ecludiean distance between two points and return the B locations.
+
+A [[1,3][-2,2]], B = 1
+
+> BF:  `time: O(NlogN)`
+1. Iterate over array A and calculate the ecludiean distanc.
+2. Sort the array using built in functionality
+3. return the first B elements
+
+```
+Ecludian Distance is distance between two points.
+points are coordinate in x and y
+
+Formula:
+d = sqrt((x1-x2)**2 + (y1-y2)**2)
+
+We can ignore sqrt and compare the ((x2-x1)**2 + (y2-y1)**2) value
+As the origin is 0,
+
+((x2)**2 + (y2)**2) only is enough
+
+```
+
+```python
+def customFunc(x, y):
+  a = ((x[0])**2 + (x[1])**2)
+  b = ((y[0])**2 + (y[1])**2)
+  if a>b:
+    return 1
+  elif a<b:
+    return -1
+  else:
+    return -1
+
+from functools import cmp_to_key
+
+A = sorted(A, key=cmp_to_key(customFunc))
+return A[0:B]
+```
+
+### wave array
+Given int[] A, sort the array into wave-link array and return it.
+a1>=a2<=a3>=a4<=a5 is the wave link format.
+
+A = [1,2,3,4]
+ans = [2,1,4,3]
+
+Note: return lexicographically smallest if more possible answers
+
+> BF: `time: NlogN`
+1. Sort the array
+2. swap every two elements in the array to get the answer
+
+```python
+def waveArray(A):
+  N = len(A)
+  A.sort()
+  for i in range(N):
+    if i+1 <N: # To handle if the N is odd value
+      # swapping the two elements
+      A[i], A[i+1] = A[i+1], A[i]
+  return A
+```
+
+
+
+### quick sort
+### partition given arry assuming the last element as pivot point
