@@ -33,12 +33,12 @@ Find the noble element from distince array n
 Noble: 
 When index curser is at A[i]. A[i] is noble, if the count of elements smaller than A[i] or is equal to A[i] 
 
-![alt text](basicsimg/image.png)
+![alt text](basicsimg/image-5.png)
 
 Psudo code:
-![alt text](basicsimg/image-1.png)
+![alt text](basicsimg/image-6.png)
 
 Optimal approch:
-![alt text](basicsimg/image-2.png)
-![alt text](basicsimg/image-3.png)
-![alt text](basicsimg/image-4.png)
+![alt text](basicsimg/image-7.png)
+![alt text](basicsimg/image-8.png)
+![alt text](basicsimg/image-9.png)
