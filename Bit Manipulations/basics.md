@@ -109,3 +109,5 @@ How to make max number:
 TODO: long (64 bits)
     min = -2 ^ 63
     max = 2 ^ 63 -1  
+
+Note: If the first bit is set it is ODD number
