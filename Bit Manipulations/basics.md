@@ -111,3 +111,8 @@ TODO: long (64 bits)
     max = 2 ^ 63 -1  
 
 Note: If the first bit is set it is ODD number
+
+Quiz: what is the range of N bit can save?
+
+Negative -2^N-1
+POssitve 2^N-1-1
