@@ -93,3 +93,32 @@ Code:
 ![alt text](image-22.png)
 
 ![alt text](image-23.png)
+
+## Flip Problem:
+
+Solution1:
+![alt text](image-24.png)
+
+Solution2:
+```python
+class Solution:
+    def flip(self, A):
+        max_sum = 0
+        cur_sum = 0
+        start = 0
+        ans = []
+
+        for i in range(len(A)):
+            value = 1 if A[i] == '0' else -1
+            cur_sum += value
+
+            if cur_sum < 0:
+                cur_sum = 0
+                start = i + 1
+            elif cur_sum > max_sum:
+                max_sum = cur_sum
+                ans = [start + 1, i + 1]  # 1-based indexing
+
+        return ans
+
+```
